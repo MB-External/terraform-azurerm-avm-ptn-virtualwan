@@ -54,6 +54,8 @@ resource "azurerm_vpn_gateway_connection" "vpn_site_connection" {
 
     content {
       associated_route_table = routing.value.associated_route_table
+      inbound_route_map_id   = try(routing.value.inbound_route_map_id, null)
+      outbound_route_map_id  = try(routing.value.outbound_route_map_id, null)
 
       dynamic "propagated_route_table" {
         for_each = routing.value.propagated_route_table != null ? [routing.value.propagated_route_table] : []
