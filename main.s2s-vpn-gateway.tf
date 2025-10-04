@@ -46,7 +46,7 @@ module "vpn_site_connection" {
           protocol                              = try(link.protocol, null)
           ratelimit_enabled                     = try(link.ratelimit_enabled, null)
           route_weight                          = try(link.route_weight, null)
-          shared_key                            = try(link.shared_key, null)
+          shared_key_key                        = try(link.shared_key_key, null)
           local_azure_ip_address_enabled        = try(link.local_azure_ip_address_enabled, null)
           policy_based_traffic_selector_enabled = try(link.policy_based_traffic_selector_enabled, null)
           custom_bgp_addresses = try(link.custom_bgp_addresses, null) == null ? [] : [
@@ -60,6 +60,7 @@ module "vpn_site_connection" {
       routing                 = try(conn.routing, null)
       traffic_selector_policy = try(conn.traffic_selector_policy, null)
     }
+    vpn_links_shared_keys = var.vpn_links_shared_keys
 
   }
 }

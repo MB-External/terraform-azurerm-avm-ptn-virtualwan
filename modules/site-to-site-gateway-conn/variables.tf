@@ -26,7 +26,7 @@ variable "vpn_site_connection" {
       protocol                              = optional(string)
       ratelimit_enabled                     = optional(bool)
       route_weight                          = optional(number)
-      shared_key                            = optional(string)
+      shared_key_key                        = optional(string)
       local_azure_ip_address_enabled        = optional(bool)
       policy_based_traffic_selector_enabled = optional(bool)
       custom_bgp_addresses = optional(list(object({
@@ -50,4 +50,10 @@ variable "vpn_site_connection" {
     }))
   }))
   description = "S2S VPN Site Connections parameter"
+}
+
+variable "vpn_links_shared_keys" {
+  type = map(string)
+  sensitive = true
+  default = {}
 }

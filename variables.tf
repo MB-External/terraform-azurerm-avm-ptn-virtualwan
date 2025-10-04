@@ -562,7 +562,7 @@ variable "vpn_site_connections" {
       protocol                              = optional(string, "IKEv2")
       ratelimit_enabled                     = optional(bool, false)
       route_weight                          = optional(number)
-      shared_key                            = optional(string)
+      shared_key_key                        = optional(string)
       local_azure_ip_address_enabled        = optional(bool)
       policy_based_traffic_selector_enabled = optional(bool)
       custom_bgp_addresses = optional(list(object({
@@ -614,7 +614,7 @@ variable "vpn_site_connections" {
     - `protocol`: Optional protocol for the VPN link. Allowed values are: `IKEv2`, `IKEv1`. Defaults to `IKEv2`.
     - `ratelimit_enabled`: Optional boolean to enable rate limiting for the VPN link. Defaults to `false`.
     - `route_weight`: Optional route weight for the VPN link.
-    - `shared_key`: Optional shared key for the VPN link.
+    - `shared_key_key`: The arbitrary key specified in the map of stings variable called `vpn_links_shared_keys` for the shared key you wish to use for this VPN link.
     - `local_azure_ip_address_enabled`: Optional boolean to enable local Azure IP address for the VPN link.
     - `policy_based_traffic_selector_enabled`: Optional boolean to enable policy based traffic selector for the VPN link.
     - `custom_bgp_addresses`: Optional list of custom BGP addresses for the VPN link, which includes:
@@ -635,6 +635,12 @@ variable "vpn_site_connections" {
   > Note: There can be multiple objects in this map, one for each VPN Site connection you wish to connect to the Virtual WAN VPN Gateways that have been defined in the variable `vpn_gateways`.
 
   DESCRIPTION
+}
+
+variable "vpn_links_shared_keys" {
+  type = map(string)
+  sensitive = true
+  default = {}
 }
 
 variable "vpn_sites" {
