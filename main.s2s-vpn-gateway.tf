@@ -60,9 +60,8 @@ module "vpn_site_connection" {
       routing                 = try(conn.routing, null)
       traffic_selector_policy = try(conn.traffic_selector_policy, null)
     }
-    vpn_links_shared_keys = var.vpn_links_shared_keys
-
   }
+  vpn_links_shared_keys = var.vpn_links_shared_keys
 }
 
 moved {
